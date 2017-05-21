@@ -567,7 +567,7 @@ def _alphanum_str(string):
 
 
 def _to_str(iterable, delimiter=', '):
-    return delimiter.join(filter(None, iterable))
+    return delimiter.join([_f for _f in iterable if _f])
 
 
 _SHELL_COLOR_LT_BLUE = '\033[94m'
@@ -577,7 +577,7 @@ _SHELL_COLOR_END = '\033[0m'
 
 def _print(shell_color, string_format, *string_args):
     message = string_format % string_args
-    print(shell_color + message + _SHELL_COLOR_END)
+    print((shell_color + message + _SHELL_COLOR_END))
 
 
 def _warn(string_format, *string_args):
@@ -708,7 +708,7 @@ def _main():
         elif 'u' == sub:
             uninstall(args.package, args.regex, args.devices, args.force)
     except Exception as e:
-        print(str(e))
+        print((str(e)))
 
 
 if __name__ == "__main__":
